@@ -1,0 +1,9 @@
+[package]
+name = "rust"
+edition = "2021"
+
+[dependencies]
+cxx = "1.0"
+
+[lib]
+crate-type = ["cdylib"]
