@@ -26,3 +26,10 @@ build_platform "build/$sim_platform" \
     -DRust_CARGO_TARGET=aarch64-apple-ios-sim \
     -Dcargo_library_path=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk \
     -DCMAKE_OSX_ARCHITECTURES=x86_64;arm64"
+
+macos_platform="macos"
+build_platform "build/$macos_platform" \
+    "-GXcode -DCMAKE_SYSTEM_NAME=Darwin \
+    -DCMAKE_OSX_DEPLOYMENT_TARGET=$MACOS_DEPLOYMENT_TARGET \
+    -DRust_CARGO_TARGET=aarch64-apple-darwin \
+    -DCMAKE_OSX_ARCHITECTURES=$(uname -m)"
