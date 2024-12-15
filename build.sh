@@ -24,7 +24,6 @@ build_platform "build/$sim_platform" \
     -DCMAKE_OSX_DEPLOYMENT_TARGET=$IOS_DEPLOYMENT_TARGET \
     -DCMAKE_OSX_SYSROOT=iphonesimulator \
     -DRust_CARGO_TARGET=aarch64-apple-ios-sim \
-    -Dcargo_library_path=/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator.sdk \
     -DCMAKE_OSX_ARCHITECTURES=x86_64;arm64"
 
 macos_platform="macos"
