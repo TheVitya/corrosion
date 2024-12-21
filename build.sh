@@ -1,6 +1,7 @@
 #!/bin/bash
 
 IOS_DEPLOYMENT_TARGET="14.0"
+MACOS_DEPLOYMENT_TARGET="11.0"
 
 rm -rf build
 
@@ -11,7 +12,7 @@ build_platform() {
 
     cmake -B $build_dir $cmake_args
 
-    cmake --build "$build_dir" --config Release || {
+    cmake  --build "$build_dir" --config Release --verbose || {
         echo "Build failed. Exiting."
         exit 1
     }
