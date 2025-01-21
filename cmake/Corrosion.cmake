@@ -101,6 +101,11 @@ else()
     set(CORROSION_TOOLS_CARGO "${CARGO_EXECUTABLE}" CACHE INTERNAL "" FORCE)
 endif()
 
+set(set_path "")
+if(CMAKE_SYSTEM_NAME STREQUAL "iOS")
+  set(set_path "PATH=/usr/bin\n" CACHE STRING "")
+endif()
+
 function(_corrosion_bin_target_suffix target_name out_var_suffix)
     get_target_property(hostbuild "${target_name}" ${_CORR_PROP_HOST_BUILD})
     if((hostbuild AND CMAKE_HOST_WIN32)
@@ -811,6 +816,7 @@ function(_add_cargo_build out_cargo_build_out_dir)
         _cargo-build_${target_name}
         # Build crate
         COMMAND
+            ${set_path}
             ${CMAKE_COMMAND} -E env
                 "${build_env_variable_genex}"
                 "${global_rustflags_genex}"
@@ -1722,6 +1728,7 @@ function(corrosion_add_cxxbridge cxx_target)
 
             add_custom_command(OUTPUT "${CMAKE_BINARY_DIR}/corrosion/cxxbridge_v${cxx_required_version}/bin/cxxbridge${executable_postfix}"
                 COMMAND
+                ${set_path}
                 ${CMAKE_COMMAND} -E make_directory "${CMAKE_BINARY_DIR}/corrosion/cxxbridge_v${cxx_required_version}"
                 COMMAND
                     ${CMAKE_COMMAND} -E env
